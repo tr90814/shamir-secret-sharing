@@ -1,10 +1,9 @@
-const { _split, _reconstruct } = require('./lib/index')
+const { split, recover, bigPrime } = require('./lib/index')
 
-function ShamirSecretSharing (prime, partsToSplitInto, minimumPartsToReconstruct) {
-  this.split = _split(prime, partsToSplitInto, minimumPartsToReconstruct)
-  this.reconstruct = _reconstruct(prime)
+function ShamirSecretSharing (partsToSplitInto, minimumPartsToRecover, prime) {
+  this.prime = prime || bigPrime()
+  this.split = split(this.prime, partsToSplitInto, minimumPartsToRecover)
+  this.reconstruct = recover(this.prime)
 }
 
-module.exports = {
-  ShamirSecretSharing
-}
+module.exports = ShamirSecretSharing

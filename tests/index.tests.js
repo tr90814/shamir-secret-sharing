@@ -5,8 +5,8 @@ const bigInt = require('big-integer')
 const {
   split,
   splitNumber,
-  reconstruct,
-  reconstructNumber,
+  recover,
+  recoverNumber,
   stringToBigInt,
   bigIntToString,
   modulusPolynomialFromBigIntArray
@@ -55,24 +55,24 @@ describe('Shamir\'s secret sharing', () => {
     })
   })
 
-  describe('reconstructNumber', () => {
+  describe('recoverNumber', () => {
     const partsToSplitInto = 6
-    const minimumPartsToReconstruct = 3
+    const minimumPartsToRecover = 3
 
     it('reverses encode', () => {
-      const splitRes = splitNumber(bigPrime, partsToSplitInto, minimumPartsToReconstruct)(knownSecretNumberFormat)
-      const minParts = splitRes.slice(0, minimumPartsToReconstruct)
-      expect(reconstructNumber(bigPrime)(minParts)).to.eql(knownSecretNumberFormat)
+      const splitRes = splitNumber(bigPrime, partsToSplitInto, minimumPartsToRecover)(knownSecretNumberFormat)
+      const minParts = splitRes.slice(0, minimumPartsToRecover)
+      expect(recoverNumber(bigPrime)(minParts)).to.eql(knownSecretNumberFormat)
     })
   })
 
-  describe('reconstruct', () => {
+  describe('recover', () => {
     const string = 'tommyiscool'
     const partsToSplitInto = 7
-    const minimumPartsToReconstruct = 5
+    const minimumPartsToRecover = 5
 
     it('Splits and reconstructs strings', () => {
-      expect(reconstruct(bigPrime, partsToSplitInto, minimumPartsToReconstruct)(split(bigPrime, partsToSplitInto, minimumPartsToReconstruct)(string))).to.eql(string)
+      expect(recover(bigPrime, partsToSplitInto, minimumPartsToRecover)(split(bigPrime, partsToSplitInto, minimumPartsToRecover)(string))).to.eql(string)
     })
   })
 })
