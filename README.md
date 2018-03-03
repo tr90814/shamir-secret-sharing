@@ -2,6 +2,8 @@
 
 An implementation of Shamir's secret sharing algorithm see [wiki article](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing).
 
+_Note: this is not fit for production use as it uses non cryptographically secure random numbers._
+
 #### How to use
 
 ```JS
