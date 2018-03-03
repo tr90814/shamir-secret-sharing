@@ -9,7 +9,8 @@ const ShamirSecretSharing = require('shamir-secret-sharing')
 
 const sharingInstance = new ShamirSecretSharing(6, 2)
 const secretsToShare = sharingnIstance.share('thisisverysecret')
-// => [
+// => 
+// [
 //   [ 1, '19675587604197859220423539702042757228705618586063' ],
 //   [ 2, '16397488340676027191773553500395920132106362672628' ],
 //   [ 3, '13119389077154195163123567298749083035507106759193' ],
