@@ -67,9 +67,9 @@ describe('Shamir\'s secret sharing', () => {
   })
 
   describe('recover', () => {
-    const string = 'tommyiscool'
+    const string = 'tommyiscoolveryverycool'
     const partsToSplitInto = 7
-    const minimumPartsToRecover = 5
+    const minimumPartsToRecover = 2
 
     it('Splits and reconstructs strings', () => {
       expect(recover(bigPrime, partsToSplitInto, minimumPartsToRecover)(share(bigPrime, partsToSplitInto, minimumPartsToRecover)(string))).to.eql(string)
