@@ -3,8 +3,8 @@ const fuzzer = require('./fuzzer')
 const bigInt = require('big-integer')
 
 const {
-  split,
-  splitNumber,
+  share,
+  shareNumber,
   recover,
   recoverNumber,
   stringToBigInt,
@@ -44,14 +44,14 @@ describe('Shamir\'s secret sharing', () => {
     })
   })
 
-  describe('split', () => {
+  describe('share', () => {
     it('splits the secret into the correct number of parts', () => {
       const parts = fuzzer.integer(20)
-      expect(split(bigPrime, parts, 5)('secret').length).to.equal(parts)
+      expect(share(bigPrime, parts, 5)('secret').length).to.equal(parts)
     })
 
     it('splits the secret into strings', () => {
-      expect(typeof split(bigPrime, 2, 5)('secret')[0][1]).to.equal('string')
+      expect(typeof share(bigPrime, 2, 5)('secret')[0][1]).to.equal('string')
     })
   })
 
@@ -60,7 +60,7 @@ describe('Shamir\'s secret sharing', () => {
     const minimumPartsToRecover = 3
 
     it('reverses encode', () => {
-      const splitRes = splitNumber(bigPrime, partsToSplitInto, minimumPartsToRecover)(knownSecretNumberFormat)
+      const splitRes = shareNumber(bigPrime, partsToSplitInto, minimumPartsToRecover)(knownSecretNumberFormat)
       const minParts = splitRes.slice(0, minimumPartsToRecover)
       expect(recoverNumber(bigPrime)(minParts)).to.eql(knownSecretNumberFormat)
     })
@@ -71,8 +71,10 @@ describe('Shamir\'s secret sharing', () => {
     const partsToSplitInto = 7
     const minimumPartsToRecover = 5
 
+    console.log(share(bigPrime, 6, 2)('thisisverysecret'))
+
     it('Splits and reconstructs strings', () => {
-      expect(recover(bigPrime, partsToSplitInto, minimumPartsToRecover)(split(bigPrime, partsToSplitInto, minimumPartsToRecover)(string))).to.eql(string)
+      expect(recover(bigPrime, partsToSplitInto, minimumPartsToRecover)(share(bigPrime, partsToSplitInto, minimumPartsToRecover)(string))).to.eql(string)
     })
   })
 })
