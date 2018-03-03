@@ -71,8 +71,6 @@ describe('Shamir\'s secret sharing', () => {
     const partsToSplitInto = 7
     const minimumPartsToRecover = 5
 
-    console.log(share(bigPrime, 6, 2)('thisisverysecret'))
-
     it('Splits and reconstructs strings', () => {
       expect(recover(bigPrime, partsToSplitInto, minimumPartsToRecover)(share(bigPrime, partsToSplitInto, minimumPartsToRecover)(string))).to.eql(string)
     })
