@@ -6,9 +6,10 @@ An implementation of Shamir's secret sharing algorithm see [wiki article](https:
 
 ```JS
 const ShamirSecretSharing = require('shamir-secret-sharing')
-
 const sharingInstance = new ShamirSecretSharing(6, 2)
+
 const secretsToShare = sharingnIstance.share('thisisverysecret')
+
 // => 
 // [
 //   [ 1, '19675587604197859220423539702042757228705618586063' ],
@@ -20,5 +21,6 @@ const secretsToShare = sharingnIstance.share('thisisverysecret')
 // ]
 
 sharingInstance.recover(secretsToShare)
+
 // => 'thisisverysecret'
 ```
