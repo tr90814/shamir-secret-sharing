@@ -2,6 +2,8 @@
 
 An implementation of Shamir's secret sharing algorithm see [wiki article](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing).
 
+_Note: this is not fit for production use as it uses non cryptographically secure random numbers._
+
 #### How to use
 
 ```JS
@@ -12,15 +14,15 @@ const secretsToShare = sharingnIstance.share('thisisverysecret')
 
 // => 
 // [
-//   [ 1, '19675587604197859220423539702042757228705618586063' ],
-//   [ 2, '16397488340676027191773553500395920132106362672628' ],
-//   [ 3, '13119389077154195163123567298749083035507106759193' ],
-//   [ 4, '9841289813632363134473581097102245938907850845758' ],
-//   [ 5, '6563190550110531105823594895455408842308594932323' ],
-//   [ 6, '3285091286588699077173608693808571745709339018888' ]
+//  '1_9af6c411bb1da840de2ecf08d38107592152c2e62',
+//  '2_3aa39977284d7f152e4d58092e58a81fb84c25f1a',
+//  '3_d59a5d88e36b27470129f7586ce114987ec302349',
+//  '4_754732ee509afe1b51488058c7b8b55f15bc65401',
+//  '5_14f40853bdcad4efa167095922905625acb5c84b9',
+//  '6_afeacc6578e87d217443a8a86118c29e732ca48e8'
 // ]
 
-sharingInstance.recover(secretsToShare)
+sharingInstance.recover(secretsToShare.slice(-2))
 
 // => 'thisisverysecret'
 ```
